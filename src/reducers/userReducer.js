@@ -94,14 +94,15 @@ export const userreducer = (state=initialUserdata,actions)=>{
     }
     if(actions.type==="saveuser"){
         usersObj = {...state};
-        usersObj.users.map((e)=>{
+        usersObj.duplicateUsersList.map((e)=>{
             if(e.id === actions.saveuserObj.id){
                 e.name = actions.saveuserObj.name;
                 e.email = actions.saveuserObj.email;
                 e.role = actions.saveuserObj.role;                
             }
         })
-        usersObj.duplicateUsersList =  usersObj.users;
+        usersObj.users = usersObj.duplicateUsersList;
+        console.log(usersObj.duplicateUsersList);
         return usersObj;
     }
     if(actions.type==="canceledit"){
