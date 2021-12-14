@@ -14,7 +14,7 @@ function Createtable(props){
     
     const dispatch = useDispatch();
     const state = useSelector(state=>state.userreducer);
-
+    deleteList = state.delUserList; 
     //Delete user by delete button
     const deleterecordUsingButton = (e)=>{
         dispatch(deleteuser(e));
