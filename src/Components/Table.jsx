@@ -1,10 +1,13 @@
 import React from "react";
 import Createtable from "./Createtable";
 import  {useSelector} from 'react-redux';
+import { useDispatch } from "react-redux";
+import { decreaseCurrPage } from "../reducers/paginationReducer";
 var tableheaders = [];
 
 const Table = ()=>{
     
+    const dispatch = useDispatch();
     const state = useSelector(state=>state.userreducer);
     const statep = useSelector(state=>state.paginationreducer);
     const users = {...state};
@@ -19,6 +22,9 @@ const Table = ()=>{
     if(Object.keys(userdata).length !== 0){   
         Array(userdata).map((e)=>{
             //slice the records from users array
+            if(statep.startRecord >= totalLength){
+                dispatch(decreaseCurrPage());
+            }
             if(statep.endRecord > totalLength){
                 end = totalLength;
             }
