@@ -5,13 +5,14 @@ import "./../styles/adminPage.css";
 
 const Searchbar = ()=>{
     const dispatch = useDispatch();
-
+    //setting search text in state
     const search = (ele)=>{
         dispatch(storeSearchText(ele.target.value));
     }
+    //performing search operaton
     const userSearchform = (ele)=>{
         ele.preventDefault();
-        console.log(ele);
+        // console.log(ele);
         dispatch(userSearch());
     }
     return(

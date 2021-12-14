@@ -15,9 +15,11 @@ function Createtable(props){
     const dispatch = useDispatch();
     const state = useSelector(state=>state.userreducer);
 
+    //Delete user by delete button
     const deleterecordUsingButton = (e)=>{
         dispatch(deleteuser(e));
     }
+    //Selecting and Deselecting user to delete user using checkbox
     const deleterecordUsingCheckbox = (ele,id)=>{
         var flag = true;
         for(var i=0;i<deleteList.length;i++){
@@ -34,9 +36,9 @@ function Createtable(props){
             ele.target.checked = false;
             deleteList = deleteList.filter(item => item !== id)
         }
-        console.log(deleteList);
         dispatch(addDeleteList(deleteList));
     }
+    //selecting and deselecting all checkboxes for deletion using selectAll checkbox
     const deleteAll = ()=>{
         const usercheckbox = document.querySelectorAll(".usercheckbox");
         deleteList = [];
@@ -67,7 +69,7 @@ function Createtable(props){
         }
         dispatch(addDeleteList(deleteList));
     }
-    
+    //edit user record
     const editrecord = (e)=>{
         dispatch(edituser(e));   
     }  

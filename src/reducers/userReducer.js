@@ -1,14 +1,4 @@
 
-//Action for loading
-export const loading = ()=>({
-    type:"loading",
-})
-
-export const error = (errMsg)=>({
-    type:"error",
-    payload:errMsg,
-})
-
 //Action for storing user data
 export const storedata = (data)=>({
     type:"storeuser",
@@ -24,37 +14,35 @@ export const edituser = (obj)=>({
     type:"edituser",
     edituserObj : obj,
 })
-
+//action to save edit changes
 export const saveuser = (obj)=>({
     type:"saveuser",
     saveuserObj : obj,
 })
-
+//action for cancel edit
 export const canceledit = ()=>({
     type:"canceledit",
 })
-
+//delete operation
 export const deleteSelected = ()=>({
     type:"deleteSelected",
 })
-
+//adding users to delete list
 export const addDeleteList = (lst)=>({
     type:"adddellist",
     delList : lst,
 })
-
+//storing search text
 export const storeSearchText = (searchText)=>({
     type:"storeSearchText",
     searchText : searchText,
 })
-
+//performing search
 export const userSearch = ()=>({
     type:"userSearch"
 })
 
 const initialUserdata = {
-    loading : true,
-    error: false,
     users: [],
     edituserObject : {},
     editflag : false,
@@ -72,35 +60,15 @@ export const userreducer = (state=initialUserdata,actions)=>{
                 ...state,
                 users : actions.payload,
                 duplicateUsersList : actions.payload,
-                loading: false,
-                error : null,
             }
         )
     }
-    if(actions.type==="loading"){
-        return (
-            {
-                ...state,
-                loading:true,
-                error : null,
-            }
-        )
-    }
-    if(actions.type==="error"){
-        console.log("Error on data fetching")
-        return (
-            {
-                ...state,
-                error:actions.payload,
-                loading : false,
-            }
-        )
-    }
+
     if(actions.type === "deleteuser"){
         var usersObj = {...state};
         if(window.confirm("Are you sure?")){
             var tempUsers = [];
-            usersObj.users.map((e)=>{
+            usersObj.duplicateUsersList.map((e)=>{
             if(e.id !== actions.userids){
                 tempUsers.push(e);
             }
@@ -146,7 +114,7 @@ export const userreducer = (state=initialUserdata,actions)=>{
         usersObj = {...state};
         if(window.confirm("Are you sure?")){
             tempUsers = [];
-            usersObj.users.map((e)=>{
+            usersObj.duplicateUsersList.map((e)=>{
                 var flag = true;
                 for(var i=0;i<usersObj.delUserList.length;i++){
                     if(e.id === usersObj.delUserList[i]){
@@ -158,13 +126,13 @@ export const userreducer = (state=initialUserdata,actions)=>{
                     tempUsers.push(e);
                 }
             })
-            usersObj.users = tempUsers;  
+            usersObj.users = tempUsers;
+            usersObj.duplicateUsersList =  tempUsers; 
             usersObj.delUserList = [];
             return usersObj;
         }
     }
     if(actions.type==="adddellist"){
-        console.log(state.deleteflag);
         if(actions.delList.length === 0){
             return({
                 ...state,

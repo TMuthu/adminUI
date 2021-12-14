@@ -15,7 +15,7 @@ const Table = ()=>{
     var totalLength = Object.keys(userdata).length;
     var end = 0;   
     
-    //Adding Checkbox and Actions status to users 
+    //filtering user records for pagination  
     if(Object.keys(userdata).length !== 0){   
         Array(userdata).map((e)=>{
             //slice the records from users array

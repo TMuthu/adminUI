@@ -18,12 +18,15 @@ export const Paginationcontrols = ()=>{
 
     var totalPages = Math.ceil(totalLength/10);
     
+    //performing back page navigation
     const goback = ()=>{
         dispatch(decreaseCurrPage())
     }
+    //performing next page navigation
     const goNext = ()=>{
         dispatch(increaseCurrPage())
     }
+    //deleting selected users
     const deleteAll = ()=>{
         dispatch(deleteSelected());
         dispatch(addDeleteList([]));

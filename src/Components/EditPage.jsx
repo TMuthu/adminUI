@@ -10,11 +10,12 @@ export const Edit = ()=>{
     const nameref = useRef(null);
     const emailref = useRef(null);
     const roleref = useRef(null);
-    
+    //updating edited value 
     const save = ()=>{
         dispatch(saveuser({id:state.edituserObject.id,name:nameref.current.value,email:emailref.current.value,role:roleref.current.value}));
         dispatch(canceledit());
     }
+    //canceling edit operation
     const cancel = ()=>{
         dispatch(canceledit());
     }

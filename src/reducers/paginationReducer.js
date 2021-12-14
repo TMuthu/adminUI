@@ -11,19 +11,19 @@ export const pagination = (page)=>{
         currPage:page,
     })
 }
-
+//action to increase the current page
 export const increaseCurrPage = ()=>{
     return({
         type:"increaseCurrPage",
     })
 }
-
+//action to decrease the current page
 export const decreaseCurrPage = ()=>{
     return({
         type:"decreaseCurrPage",
     })
 }
-
+//reducer for pagination
 export const paginationreducer = (state=initialPagination,actions)=>{
     if(actions.type==="pagination"){
         return({
