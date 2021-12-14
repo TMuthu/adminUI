@@ -102,7 +102,6 @@ export const userreducer = (state=initialUserdata,actions)=>{
             }
         })
         usersObj.users = usersObj.duplicateUsersList;
-        console.log(usersObj.duplicateUsersList);
         return usersObj;
     }
     if(actions.type==="canceledit"){
