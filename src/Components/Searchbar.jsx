@@ -8,6 +8,9 @@ const Searchbar = ()=>{
     //setting search text in state
     const search = (ele)=>{
         dispatch(storeSearchText(ele.target.value));
+        if(ele.target.value===""){
+            dispatch(userSearch());
+        }
     }
     //performing search operaton
     const userSearchform = (ele)=>{

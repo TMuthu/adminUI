@@ -157,13 +157,19 @@ export const userreducer = (state=initialUserdata,actions)=>{
     if(actions.type==="userSearch"){
         usersObj = {...state};
         tempUsers = [];
-        usersObj.duplicateUsersList.map((e)=>{
-            if(e.role.includes(usersObj.searchText) || e.name.includes(usersObj.searchText) || e.email.includes(usersObj.searchText)){
-                tempUsers.push(e);
-            }
-        })
-        usersObj.users = tempUsers;    
-        return usersObj;
+        if(usersObj.searchText === ""){
+            usersObj.users = usersObj.duplicateUsersList;    
+            return usersObj;
+        }
+        else{
+            usersObj.duplicateUsersList.map((e)=>{
+                if(e.role.includes(usersObj.searchText) || e.name.includes(usersObj.searchText) || e.email.includes(usersObj.searchText)){
+                    tempUsers.push(e);
+                }
+            })
+            usersObj.users = tempUsers;    
+            return usersObj;
+        }
     }
     return state;
 }
